@@ -10,20 +10,15 @@
             @mouseover="lazyLoadProfile"
             @click="goToPlayer(name)"
           >
-            <span v-if="!left">
-              (
-              <v-icon class="mmr">mdi-chevron-triple-up</v-icon>
-              {{ mmr }})
-            </span>
+            <mmr-marker
+              style="padding-right: 16px; padding-left: 16px"
+              :left="left"
+              :mmr="mmr"
+            />
             {{ nameWithoutBtag }}
             <span v-if="player.xpChange" :class="won">
               <span v-if="player.xpChange > 0">(+{{ player.xpChange }})</span>
               <span v-else>({{ player.xpChange }})</span>
-            </span>
-            <span v-if="left">
-              (
-              <v-icon class="mmr">mdi-chevron-triple-up</v-icon>
-              {{ mmr }})
             </span>
           </a>
         </div>
@@ -48,7 +43,7 @@
         {{ nameWithoutBtag }}#{{ btag }}
         <span v-if="left">
           (
-          <v-icon class="mmr">mdi-chevron-triple-up</v-icon>
+          <mmr-marker class="mmr">mdi-chevron-triple-up</mmr-marker>
           {{ mmr }})
         </span>
       </p>
@@ -63,9 +58,10 @@ import { Component, Prop } from "vue-property-decorator";
 import { ERaceEnum } from "@/store/typings";
 import PlayerIcon from "@/components/PlayerIcon.vue";
 import { PlayerProfile } from "../store/player/types";
+import MmrMarker from "@/components/MmrMarker.vue";
 
 @Component({
-  components: { PlayerIcon }
+  components: {MmrMarker, PlayerIcon }
 })
 export default class PlayerMatchInfo extends Vue {
   @Prop() public player!: {

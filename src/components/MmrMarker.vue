@@ -18,7 +18,7 @@ export default class MmrMarker extends Vue {
 
   alignment() {
     const hackClass = this.left ? "correct-hack-left" : "correct-hack-right";
-    const alignClasses = this.left ? "alignLeft" : "alignRight";
+    const alignClasses = this.left ? "mmr-icon-align-right" : "mmr-icon-align-left";
     return hackClass + " " + alignClasses;
   }
 
@@ -71,6 +71,14 @@ export default class MmrMarker extends Vue {
   color: #ffffff;
   text-align: center;
   position: fixed;
+}
+
+.mmr-icon-align-right {
+  float: right;
+}
+
+.mmr-icon-align-left {
+  float: left;
 }
 
 .correct-hack-left {
