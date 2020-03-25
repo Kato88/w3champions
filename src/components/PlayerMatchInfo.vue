@@ -20,8 +20,6 @@
               <span v-if="player.xpChange > 0">(+{{ player.xpChange }})</span>
               <span v-else>({{ player.xpChange }})</span>
             </span>
-            <br />
-            <span class="btag"> #{{ btag }} </span>
           </a>
         </div>
       </div>
@@ -57,7 +55,7 @@ import { PlayerProfile } from "../store/player/types";
 import MmrMarker from "@/components/MmrMarker.vue";
 
 @Component({
-  components: { MmrMarker, PlayerIcon }
+  components: {MmrMarker, PlayerIcon }
 })
 export default class PlayerMatchInfo extends Vue {
   @Prop() public player!: {
@@ -142,4 +140,5 @@ export default class PlayerMatchInfo extends Vue {
 .lost {
   color: red !important;
 }
+
 </style>
