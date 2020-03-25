@@ -6,10 +6,9 @@
           <v-card-title>
             Profile of
             <span class="playerTag">
-              {{ battleTag }} (
-              <v-icon class="mmr">mdi-chevron-triple-up</v-icon>
-              {{ mmr }})
+              {{ battleTag }}
             </span>
+            <mmr-marker class="mmr-spacing-player-info" :mmr="mmr" />
           </v-card-title>
           <v-tabs>
             <v-tabs-slider></v-tabs-slider>
@@ -305,5 +304,9 @@ export default class PlayerView extends Vue {
 .playerTag {
   margin-left: 10px;
   text-transform: none;
+}
+
+.mmr-spacing-player-info {
+  margin-left: 0.3em;
 }
 </style>

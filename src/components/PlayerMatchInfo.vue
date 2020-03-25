@@ -27,11 +27,7 @@
     <div v-if="profile.data">
       <p>
         {{ nameWithoutBtag }}#{{ btag }}
-        <span>
-          (
-          <v-icon class="mmr">mdi-chevron-triple-up</v-icon>
-          {{ mmr }})
-        </span>
+        <mmr-marker class="spacing-around-mmr-marker-popup" :mmr="mmr" />
       </p>
       <p></p>
       Wins: {{ profile.data.stats.total.wins }} | Losses:
@@ -42,9 +38,7 @@
       <p>
         {{ nameWithoutBtag }}#{{ btag }}
         <span v-if="left">
-          (
-          <mmr-marker class="mmr">mdi-chevron-triple-up</mmr-marker>
-          {{ mmr }})
+          <mmr-marker class="spacing-around-mmr-marker-popup" :mmr="mmr" />
         </span>
       </p>
       <p>Wins: ... | Losses: ... | Total: ...</p>
@@ -131,9 +125,12 @@ export default class PlayerMatchInfo extends Vue {
   font-size: 10px;
 }
 
+.spacing-around-mmr-marker-popup {
+  margin-right: 0.6em;
+}
 .spacing-around-mmr-marker {
-  margin-left: 13px;
-  margin-right: 13px;
+  margin-left: 0.8em;
+  margin-right: 0.8em;
 }
 
 .won {
@@ -144,7 +141,4 @@ export default class PlayerMatchInfo extends Vue {
   color: red !important;
 }
 
-.mmr {
-  font-size: 18px !important;
-}
 </style>
