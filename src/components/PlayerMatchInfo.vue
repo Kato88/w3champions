@@ -31,7 +31,7 @@
         {{ nameWithoutBtag }}#{{ btag }}
         <mmr-marker class="spacing-around-mmr-marker-popup" :mmr="mmr" />
       </p>
-      <p></p>
+      <p />
       Wins: {{ profile.data.stats.total.wins }} | Losses:
       {{ profile.data.stats.total.losses }} | Total:
       {{ profile.data.stats.total.wins + profile.data.stats.total.losses }}
