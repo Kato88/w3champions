@@ -16,7 +16,7 @@
               <v-card-text v-if="!loadingProfile">
                 <v-row>
                   <v-col cols="3">
-                    <player-profile-avatar :mmr="mmr" :place="profile.ladder[0].rank"/>
+                    <player-profile-avatar :mmr="mmr" :place="profile.ladder[0]"/>
                   </v-col>
                   <v-col cols="5">
                     <v-tabs>

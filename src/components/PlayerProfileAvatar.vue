@@ -1,10 +1,13 @@
 <template>
-  <div class="player-icon-colored-border">
-    <div class="player-profile-picture"></div>
+  <div>
+    <div class="player-profile-picture" />
     <div class="player-flage w3-yellow-text">
       <div class="player-rank">Rank</div>
-      <div class="player-rank spacing">{{ place }}</div>
+      <div class="player-rank spacing">{{ place.rank }}</div>
     </div>
+    <br />
+    <br />
+    <xp-bar is-level-visible="true" :ranking="place" />
   </div>
 </template>
 
@@ -13,13 +16,15 @@ import Vue from "vue";
 import { Component, Prop } from "vue-property-decorator";
 import { ERaceEnum } from "@/store/typings";
 import MmrMarker from "@/components/MmrMarker.vue";
+import XpBar from "@/components/XpBar.vue";
+import { Ranking } from "@/store/ranking/types";
 
 @Component({
-  components: { MmrMarker }
+  components: { XpBar, MmrMarker }
 })
 export default class PlayerProfielAvatar extends Vue {
   @Prop() race!: ERaceEnum;
-  @Prop() place!: number;
+  @Prop() place!: Ranking;
   @Prop() mmr!: number;
 
   raceIcon() {
@@ -29,14 +34,6 @@ export default class PlayerProfielAvatar extends Vue {
 </script>
 
 <style lang="scss" scoped>
-.player-icon-outer-border {
-  width: 80%;
-  background-color: #36393f;
-}
-
-.player-icon-colored-border {
-}
-
 .player-profile-picture {
   background-image: url("../assets/raceIcons/HUMAN_1.webp");
   width: 200px;
