@@ -51,7 +51,7 @@ import Vue from "vue";
 import { Component, Prop } from "vue-property-decorator";
 import { ERaceEnum } from "@/store/typings";
 import PlayerIcon from "@/components/PlayerIcon.vue";
-import { PlayerProfile } from "../store/player/types";
+import { PlayerProfile } from "@/store/player/types";
 import MmrMarker from "@/components/MmrMarker.vue";
 
 @Component({

@@ -43,6 +43,12 @@
                           >
                         </v-data-table>
                       </v-tab-item>
+                      <v-tab-item :value="'tab-2'">
+                        <br />
+                        <br />
+                        <br />
+                        <h2 style="text-align: center">Coming soon...</h2>
+                      </v-tab-item>
                     </v-tabs>
                   </v-col>
                 </v-row>
