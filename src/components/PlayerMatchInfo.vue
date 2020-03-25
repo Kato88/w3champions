@@ -20,8 +20,6 @@
               <span v-if="player.xpChange > 0">(+{{ player.xpChange }})</span>
               <span v-else>({{ player.xpChange }})</span>
             </span>
-            <br />
-            <span class="btag"> #{{ btag }} </span>
           </a>
         </div>
       </div>

@@ -4,79 +4,46 @@
       <v-col cols="12">
         <v-card tile>
           <v-card-title>
-            Profile of
             <span class="playerTag">
               {{ battleTag }}
             </span>
-            <mmr-marker class="mmr-spacing-player-info" :mmr="mmr" />
           </v-card-title>
           <v-tabs>
             <v-tabs-slider></v-tabs-slider>
             <v-tab class="profileTab" :href="`#tab-1`">Profile</v-tab>
             <v-tab class="profileTab" :href="`#tab-2`">Match History</v-tab>
             <v-tab-item :value="'tab-1'">
-              <v-card-title>Stats</v-card-title>
               <v-card-text v-if="!loadingProfile">
                 <v-row>
-                  <v-col cols="8">
-                    <h4>Statistics by Game Mode</h4>
-                    <h5>All Reams Combined W3Champions</h5>
-                    <v-data-table
-                      hide-default-footer
-                      :headers="modeStats"
-                      :items="profile.ladder"
-                    >
-                      <template v-slot:body="{ items }">
-                        <tbody>
-                          <tr
-                            @click="openPlayerProfile(item.battleTag)"
-                            v-for="item in items"
-                            :key="item.mode"
-                          >
-                            <td>
-                              {{ $t("gameModes." + gameModeEnums[item.mode]) }}
-                            </td>
-                            <td class="text-end won">{{ item.wins }}</td>
-                            <td class="text-end lost">{{ item.losses }}</td>
-                            <td class="text-end">
-                              {{ item.wins + item.losses }}
-                            </td>
-                            <td class="text-end">
-                              {{ getWinRate(item).toFixed(1) }}%
-                            </td>
-                            <td class="text-end">{{ item.rank }}</td>
-                            <td class="text-end">
-                              {{ Math.floor(item.level) }}
-                            </td>
-                            <td>
-                              <xp-bar :ranking="item"></xp-bar>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </template>
-                    </v-data-table>
+                  <v-col cols="3">
+                    <player-profile-avatar :mmr="mmr" :place="profile.ladder[0].rank"/>
                   </v-col>
-                  <v-col cols="4">
-                    <h4>Statistics by Race</h4>
-                    <h5>Realm W3Champions</h5>
-                    <v-data-table
-                      hide-default-footer
-                      :headers="raceHeaders"
-                      :items="profile.stats"
-                    >
-                      <template v-slot:item.race="{ item }">
-                        <span>{{ $t("races." + raceEnums[item.race]) }}</span>
-                      </template>
-                      <template v-slot:item.wins="{ item }">
-                        <span class="won">{{ item.wins }}</span>
-                      </template>
-                      <template v-slot:item.losses="{ item }">
-                        <span class="lost">{{ item.losses }}</span>
-                      </template>
-                      <template v-slot:item.percentage="{ item }"
-                        >{{ item.percentage }}%</template
-                      >
-                    </v-data-table>
+                  <v-col cols="5">
+                    <v-tabs>
+                      <v-tabs-slider></v-tabs-slider>
+                      <v-tab class="profileTab" :href="`#tab-1`">{{$t("gameModes.GM_1ON1")}}</v-tab>
+                      <v-tab class="profileTab" :href="`#tab-2`">{{$t("gameModes.GM_2ON2")}}</v-tab>
+                      <v-tab-item :value="'tab-1'">
+                        <v-data-table
+                          hide-default-footer
+                          :headers="raceHeaders"
+                          :items="profile.stats"
+                        >
+                          <template v-slot:item.race="{ item }">
+                            <span>{{ $t("races." + raceEnums[item.race]) }}</span>
+                          </template>
+                          <template v-slot:item.wins="{ item }">
+                            <span class="won">{{ item.wins }}</span>
+                          </template>
+                          <template v-slot:item.losses="{ item }">
+                            <span class="lost">{{ item.losses }}</span>
+                          </template>
+                          <template v-slot:item.percentage="{ item }"
+                            >{{ item.percentage }}%</template
+                          >
+                        </v-data-table>
+                      </v-tab-item>
+                    </v-tabs>
                   </v-col>
                 </v-row>
               </v-card-text>
@@ -121,9 +88,11 @@ import MatchesGrid from "../components/MatchesGrid.vue";
 import { Ranking } from "../store/ranking/types";
 import XpBar from "../components/XpBar.vue";
 import MmrMarker from "@/components/MmrMarker.vue";
+import PlayerProfileAvatar from "@/components/PlayerProfileAvatar.vue";
 
 @Component({
   components: {
+    PlayerProfileAvatar,
     MmrMarker,
     MatchListItem,
     MatchesGrid,
@@ -161,65 +130,6 @@ export default class PlayerView extends Vue {
       align: "start",
       sortable: false,
       value: "percentage"
-    }
-  ];
-
-  public modeStats = [
-    {
-      text: "Mode",
-      align: "start",
-      sortable: false,
-      value: "type",
-      width: "25px"
-    },
-    {
-      text: "Wins",
-      align: "end",
-      sortable: false,
-      value: "wins",
-      width: "25px"
-    },
-    {
-      text: "Losses",
-      align: "end",
-      sortable: false,
-      value: "losses",
-      width: "25px"
-    },
-    {
-      text: "Total",
-      align: "end",
-      sortable: false,
-      value: "total",
-      width: "25px"
-    },
-    {
-      text: "Winrate",
-      align: "end",
-      sortable: false,
-      value: "percentage",
-      width: "25px"
-    },
-    {
-      text: "Rank",
-      align: "end",
-      sortable: false,
-      value: "fourOnFour",
-      width: "25px"
-    },
-    {
-      text: "Level",
-      align: "end",
-      sortable: false,
-      value: "level",
-      width: "25px"
-    },
-    {
-      text: "Progress",
-      align: "center",
-      sortable: false,
-      value: "progress",
-      width: "100px"
     }
   ];
 
@@ -304,9 +214,5 @@ export default class PlayerView extends Vue {
 .playerTag {
   margin-left: 10px;
   text-transform: none;
-}
-
-.mmr-spacing-player-info {
-  margin-left: 0.3em;
 }
 </style>

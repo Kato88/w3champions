@@ -1,0 +1,76 @@
+<template>
+  <div class="player-icon-colored-border">
+    <div class="player-profile-picture"></div>
+    <div class="player-flage w3-yellow-text">
+      <div class="player-rank">Rank</div>
+      <div class="player-rank spacing">{{ place }}</div>
+    </div>
+  </div>
+</template>
+
+<script lang="ts">
+import Vue from "vue";
+import { Component, Prop } from "vue-property-decorator";
+import { ERaceEnum } from "@/store/typings";
+import MmrMarker from "@/components/MmrMarker.vue";
+
+@Component({
+  components: { MmrMarker }
+})
+export default class PlayerProfielAvatar extends Vue {
+  @Prop() race!: ERaceEnum;
+  @Prop() place!: number;
+  @Prop() mmr!: number;
+
+  raceIcon() {
+    return "race-icon-" + ERaceEnum[this.race];
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+.player-icon-outer-border {
+  width: 80%;
+  background-color: #36393f;
+}
+
+.player-icon-colored-border {
+}
+
+.player-profile-picture {
+  background-image: url("../assets/raceIcons/HUMAN_1.webp");
+  width: 200px;
+  height: 200px;
+  border-top: 10px solid #bf9683;
+  border-left: 10px solid #a8745e;
+  border-bottom: 10px solid #885b5b;
+  border-right: 10px solid #5e3333;
+  outline: solid 2px #3f434b;
+  background-position: center;
+  background-size: cover;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.player-flage {
+  margin-top: 2px;
+  padding-top: 3em;
+  height: 180px;
+  width: 160px;
+  background: rgba(2, 27, 112, 0.5);
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  clip-path: polygon(0 0, 100% 0, 100% 81%, 50% 100%, 0 80%);
+}
+
+.player-rank {
+  font-size: 2.5em;
+  margin-top: 0.6em;
+}
+
+.mmr-marker {
+  position: fixed;
+  margin: auto;
+}
+</style>
