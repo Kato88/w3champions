@@ -56,11 +56,9 @@ export default class PlayerIcon extends Vue {
 
 .alignRight {
   float: left;
-  margin-right: 5px;
 }
 
 .alignLeft {
   float: right;
-  margin-left: 5px;
 }
 </style>

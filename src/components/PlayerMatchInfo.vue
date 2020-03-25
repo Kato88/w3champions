@@ -11,7 +11,7 @@
             @click="goToPlayer(name)"
           >
             <mmr-marker
-              style="padding-right: 16px; padding-left: 16px"
+              class="spacing-around-mmr-marker"
               :left="left"
               :mmr="mmr"
             />
@@ -132,8 +132,8 @@ export default class PlayerMatchInfo extends Vue {
 }
 
 .spacing-around-mmr-marker {
-  padding-right: 18px;
-  padding-left: 18px;
+  margin-left: 13px;
+  margin-right: 13px;
 }
 
 .won {
