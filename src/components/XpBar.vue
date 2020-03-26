@@ -5,7 +5,7 @@
         v-on="on"
         :value="(ranking.level - Math.floor(ranking.level)) * 100"
         height="15"
-        :color="color"
+        :color="barColor ? barColor : color"
       >
         <template>
           <span class="span-color" v-if="isLevelVisible">
@@ -29,6 +29,7 @@ import { Ranking } from "@/store/ranking/types";
 export default class XpBar extends Vue {
   @Prop() public ranking!: Ranking;
   @Prop() public isLevelVisible!: boolean;
+  @Prop() public barColor!: string;
 
   get color() {
     return this.$store.direct.state.darkMode ? "grey" : "black";

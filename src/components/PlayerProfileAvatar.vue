@@ -53,7 +53,7 @@ export default class PlayerProfileAvatar extends Vue {
 .player-flage {
   margin-top: 2px;
   padding-top: 3em;
-  height: 180px;
+  height: 160px;
   width: 160px;
   background: rgba(2, 27, 112, 0.5);
   margin-left: auto;
