@@ -1,20 +1,28 @@
 <template>
-  <span :class="alignment()" class="mmr-number" :style="paintMMR">
-    {{mmr}}
+  <span :class="alignment()" class="mmr-number" :style="setDynamic">
+    {{ mmr }}
   </span>
 </template>
 
 <script lang="ts">
-  import Vue from "vue";
-  import {Component, Prop} from "vue-property-decorator";
+import Vue from "vue";
+import { Component, Prop } from "vue-property-decorator";
 
-  @Component({})
+@Component({})
 export default class MmrMarker extends Vue {
   @Prop() mmr!: number;
+  @Prop() size!: number;
   @Prop() left!: boolean;
 
   alignment() {
     return this.left ? "mmr-icon-align-right" : "mmr-icon-align-left";
+  }
+
+  get setDynamic() {
+    return `${this.paintMMR};
+     font-size:${(this.size ? this.size : 24) * 0.6}px;
+     width:${this.size ? this.size : 24}px;
+     height:${this.size ? this.size : 24}px;`;
   }
 
   get paintMMR() {
@@ -43,16 +51,16 @@ export default class MmrMarker extends Vue {
     return (
       "background: url('https://api.iconify.design/mdi-shield.svg?color=%23" +
       color.substring(1) +
-      "') no-repeat center center / contain;")
-    }
+      "') no-repeat center center / contain;"
+    );
   }
+}
 </script>
 
 <style>
 .mmr-number {
-  vertical-align:middle;
+  vertical-align: middle;
   padding-bottom: 3px;
-  width: 24px;
   color: #ffffff;
   text-align: center;
 }
@@ -64,5 +72,4 @@ export default class MmrMarker extends Vue {
 .mmr-icon-align-left {
   float: left;
 }
-
 </style>

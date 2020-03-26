@@ -1,6 +1,7 @@
 <template>
   <div>
     <div class="player-profile-picture" />
+    <mmr-marker style="float: none" size="45" class="mmr-marker" :mmr="mmr" />
     <div class="player-flage w3-yellow-text">
       <div class="player-rank">Rank</div>
       <div class="player-rank spacing">{{ place.rank }}</div>
@@ -22,7 +23,7 @@ import { Ranking } from "@/store/ranking/types";
 @Component({
   components: { XpBar, MmrMarker }
 })
-export default class PlayerProfielAvatar extends Vue {
+export default class PlayerProfileAvatar extends Vue {
   @Prop() race!: ERaceEnum;
   @Prop() place!: Ranking;
   @Prop() mmr!: number;
@@ -67,7 +68,10 @@ export default class PlayerProfielAvatar extends Vue {
 }
 
 .mmr-marker {
+  float: none;
   position: fixed;
-  margin: auto;
+  width: 80px;
+  margin-left: auto;
+  margin-right: auto;
 }
 </style>
