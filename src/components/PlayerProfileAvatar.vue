@@ -1,9 +1,9 @@
 <template>
   <div>
     <div class="player-profile-picture" />
-    <mmr-marker style="float: none" size="45" class="mmr-marker" :mmr="mmr" />
+    <mmr-marker style="float: none" size="55" class="mmr-marker" :mmr="mmr" />
     <div class="player-flage w3-yellow-text">
-      <div class="player-rank">Rank</div>
+      <div class="player-rank-label">Rank</div>
       <div class="player-rank spacing">{{ place.rank }}</div>
     </div>
     <br />
@@ -62,16 +62,20 @@ export default class PlayerProfileAvatar extends Vue {
   clip-path: polygon(0 0, 100% 0, 100% 81%, 50% 100%, 0 80%);
 }
 
+.player-rank-label {
+  font-size: 1.3em;
+  margin-top: 1.3em;
+}
 .player-rank {
-  font-size: 2.5em;
-  margin-top: 0.6em;
+  font-size: 2.3em;
+  margin-top: 0.3em;
 }
 
 .mmr-marker {
   float: none;
   position: fixed;
-  width: 80px;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 103px;
+  margin-top: -11px;
+  z-index: 10;
 }
 </style>

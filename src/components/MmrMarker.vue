@@ -1,5 +1,5 @@
 <template>
-  <span :class="alignment()" class="mmr-number" :style="setDynamic">
+  <span :class="alignment()" class="mmr-number" :style="setSizeAndColor">
     {{ mmr }}
   </span>
 </template>
@@ -18,10 +18,11 @@ export default class MmrMarker extends Vue {
     return this.left ? "mmr-icon-align-right" : "mmr-icon-align-left";
   }
 
-  get setDynamic() {
+  get setSizeAndColor() {
     return `${this.paintMMR};
      font-size:${(this.size ? this.size : 24) * 0.6}px;
      width:${this.size ? this.size : 24}px;
+     padding:${(this.size ? this.size : 3) * 0.17}px;
      height:${this.size ? this.size : 24}px;`;
   }
 
